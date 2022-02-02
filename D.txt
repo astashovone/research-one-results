@@ -1,0 +1,191 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: nginx
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service
+  labels:
+    app: service
+spec:
+  selector:
+    app: web
+  ports:
+  - port: 9123
+    protocol: TCP
+    targetPort: 80
+    nodePort: 30306
+  type: NodePort
+
+ubuntu@ubuntu:~$ kubectl apply -f research/nginx.yaml
+deployment.apps/web created
+service/service created
+ubuntu@ubuntu:~$ kubectl get pods -o wide
+NAME                   READY   STATUS    RESTARTS   AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+web-6dfcf9cf79-7qm5x   1/1     Running   0          18s   10.244.3.24   k8s-worker245   <none>           <none>
+web-6dfcf9cf79-mftg6   1/1     Running   0          18s   10.244.1.73   k8s-worker100   <none>           <none>
+web-6dfcf9cf79-nsktv   1/1     Running   0          18s   10.244.2.84   k8s-worker76    <none>           <none>
+web-6dfcf9cf79-wh92b   1/1     Running   0          18s   10.244.5.24   k8s-worker102   <none>           <none>
+web-6dfcf9cf79-xnjw2   1/1     Running   0          18s   10.244.4.85   k8s-worker200   <none>           <none>
+ubuntu@ubuntu:~$
+
+andrey@andrey-MacBookAir:~/Desktop/github/fog-platform$ bash aviability-check.sh 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0   2392      0 --:--:-- --:--:-- --:--:--  2402
+<!DOCTYPE html>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0    595      0  0:00:01  0:00:01 --:--:--   595
+<!DOCTYPE html>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0  41000      0 --:--:-- --:--:-- --:--:-- 41000
+<!DOCTYPE html>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0  25625      0 --:--:-- --:--:-- --:--:-- 25625
+<!DOCTYPE html>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0  23653      0 --:--:-- --:--:-- --:--:-- 23653
+<!DOCTYPE html>
+
+andrey@andrey-MacBookAir:~/Desktop/github/fog-platform$ ssh ubuntu@192.168.31.136 'sudo halt'
+Connection to 192.168.31.136 closed by remote host.
+andrey@andrey-MacBookAir:~/Desktop/github/fog-platform$ ansible-playbook -i hosts ping.yaml 
+
+PLAY [all] ***************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************************
+fatal: [192.168.31.136]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ssh: connect to host 192.168.31.136 port 22: Connection timed out", "unreachable": true}
+ok: [192.168.31.245]
+ok: [192.168.31.200]
+ok: [192.168.31.100]
+ok: [192.168.31.76]
+ok: [192.168.31.102]
+
+TASK [ping] **************************************************************************************************************************************************
+ok: [192.168.31.102]
+ok: [192.168.31.245]
+ok: [192.168.31.200]
+ok: [192.168.31.76]
+ok: [192.168.31.100]
+
+PLAY RECAP ***************************************************************************************************************************************************
+192.168.31.100             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.102             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.136             : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.200             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.245             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.76              : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+andrey@andrey-MacBookAir:~/Desktop/github/fog-platform$
+
+andrey@andrey-MacBookAir:~/Desktop/github/fog-platform$ bash aviability-check.sh 
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0  23653      0 --:--:-- --:--:-- --:--:-- 23653
+<!DOCTYPE html>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0  30750      0 --:--:-- --:--:-- --:--:-- 30750
+<!DOCTYPE html>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0  43928      0 --:--:-- --:--:-- --:--:-- 43928
+<!DOCTYPE html>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0  34166      0 --:--:-- --:--:-- --:--:-- 34166
+<!DOCTYPE html>
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   615  100   615    0     0  41000      0 --:--:-- --:--:-- --:--:-- 41000
+<!DOCTYPE html>
+
+andrey@andrey-MacBookAir:~/Desktop/github/fog-platform$ ansible-playbook -i hosts ping.yaml 
+
+PLAY [all] ***************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************************
+ok: [192.168.31.76]
+ok: [192.168.31.245]
+ok: [192.168.31.200]
+ok: [192.168.31.136]
+ok: [192.168.31.100]
+ok: [192.168.31.102]
+
+TASK [ping] **************************************************************************************************************************************************
+ok: [192.168.31.100]
+ok: [192.168.31.200]
+ok: [192.168.31.245]
+ok: [192.168.31.76]
+ok: [192.168.31.136]
+ok: [192.168.31.102]
+
+PLAY RECAP ***************************************************************************************************************************************************
+192.168.31.100             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.102             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.136             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.200             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.245             : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+192.168.31.76              : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+andrey@andrey-MacBookAir:~/Desktop/github/fog-platform$
+
+ubuntu@ubuntu:~$ kubectl get nodes -o wide
+NAME            STATUS   ROLES                  AGE   VERSION   INTERNAL-IP      EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION     CONTAINER-RUNTIME
+k8s-worker100   Ready    <none>                 55d   v1.23.0   192.168.31.100   <none>        Ubuntu 20.04.3 LTS   5.4.0-1050-raspi   containerd://1.5.5
+k8s-worker102   Ready    <none>                 54d   v1.23.0   192.168.31.102   <none>        Ubuntu 20.04.3 LTS   5.4.0-1050-raspi   containerd://1.5.5
+k8s-worker200   Ready    <none>                 54d   v1.23.0   192.168.31.200   <none>        Ubuntu 20.04.3 LTS   5.4.0-1050-raspi   containerd://1.5.5
+k8s-worker245   Ready    <none>                 54d   v1.23.0   192.168.31.245   <none>        Ubuntu 20.04.3 LTS   5.4.0-1050-raspi   containerd://1.5.5
+k8s-worker76    Ready    <none>                 54d   v1.23.0   192.168.31.76    <none>        Ubuntu 20.04.3 LTS   5.4.0-1050-raspi   containerd://1.5.5
+ubuntu          Ready    control-plane,master   55d   v1.23.3   192.168.31.136   <none>        Ubuntu 20.04.3 LTS   5.4.0-1050-raspi   containerd://1.5.5
+ubuntu@ubuntu:~$ kubectl get deploy
+NAME   READY   UP-TO-DATE   AVAILABLE   AGE
+web    5/5     5            5           8m41s
+ubuntu@ubuntu:~$ kubectl get pods -o wide
+NAME                   READY   STATUS    RESTARTS   AGE     IP            NODE            NOMINATED NODE   READINESS GATES
+web-6dfcf9cf79-7qm5x   1/1     Running   0          8m50s   10.244.3.24   k8s-worker245   <none>           <none>
+web-6dfcf9cf79-mftg6   1/1     Running   0          8m50s   10.244.1.73   k8s-worker100   <none>           <none>
+web-6dfcf9cf79-nsktv   1/1     Running   0          8m50s   10.244.2.84   k8s-worker76    <none>           <none>
+web-6dfcf9cf79-wh92b   1/1     Running   0          8m50s   10.244.5.24   k8s-worker102   <none>           <none>
+web-6dfcf9cf79-xnjw2   1/1     Running   0          8m50s   10.244.4.85   k8s-worker200   <none>           <none>
+ubuntu@ubuntu:~$
+
+andrey@andrey-MacBookAir:~/Desktop/github/fog-platform$ cat ping.yaml 
+---
+- hosts: all
+  become: yes
+  tasks:
+    - action: ping
+
+1. Запуск nginx + service
+2. Демонстрация развертывания
+3. Демонстрация доступности
+4. Отказ управляющего узла
+5. Демонстрация доступности
+6. Восстановление узла
+7. Демонстрация работоспособности управляющего узла
+8. Демонстрация беспрерывной работы реплицированных сервисов
+

@@ -1,0 +1,185 @@
+ubuntu@ubuntu:~/research$ kubectl get nodes
+NAME            STATUS     ROLES                  AGE   VERSION
+k8s-worker100   NotReady   <none>                 54d   v1.23.0
+k8s-worker102   Ready      <none>                 54d   v1.23.0
+k8s-worker200   Ready      <none>                 54d   v1.23.0
+k8s-worker245   Ready      <none>                 54d   v1.23.0
+k8s-worker76    Ready      <none>                 54d   v1.23.0
+ubuntu          Ready      control-plane,master   54d   v1.23.3
+ubuntu@ubuntu:~/research$ kubectl get pods -o wide
+NAME                      READY   STATUS    RESTARTS      AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+sendler-7bd8775dc-2pvp2   1/1     Running   0             18m   10.244.1.68   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-52kz2   1/1     Running   0             18m   10.244.3.19   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-fjzsg   1/1     Running   1 (12m ago)   18m   10.244.2.74   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-hsb6h   1/1     Running   0             18m   10.244.5.19   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-kgf6n   1/1     Running   0             18m   10.244.4.73   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-lqb58   1/1     Running   0             18m   10.244.1.67   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-qqfch   1/1     Running   0             18m   10.244.4.74   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-r62pp   1/1     Running   0             18m   10.244.4.75   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-rnhnz   1/1     Running   0             18m   10.244.5.18   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-sn4m5   1/1     Running   0             18m   10.244.5.20   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-thhf7   1/1     Running   0             18m   10.244.1.69   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-tts46   1/1     Running   1 (12m ago)   18m   10.244.2.71   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-vx5lz   1/1     Running   1 (12m ago)   18m   10.244.2.72   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-wd9n5   1/1     Running   0             18m   10.244.3.18   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-xnmnj   1/1     Running   1 (12m ago)   18m   10.244.2.75   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-xq6hf   1/1     Running   0             18m   10.244.3.17   k8s-worker245   <none>           <none>
+ubuntu@ubuntu:~/research$ kubectl get pods -o wide
+NAME                      READY   STATUS    RESTARTS      AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+sendler-7bd8775dc-2pvp2   1/1     Running   0             19m   10.244.1.68   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-52kz2   1/1     Running   0             19m   10.244.3.19   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-fjzsg   1/1     Running   1 (12m ago)   19m   10.244.2.74   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-hsb6h   1/1     Running   0             19m   10.244.5.19   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-kgf6n   1/1     Running   0             19m   10.244.4.73   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-lqb58   1/1     Running   0             19m   10.244.1.67   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-qqfch   1/1     Running   0             19m   10.244.4.74   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-r62pp   1/1     Running   0             19m   10.244.4.75   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-rnhnz   1/1     Running   0             19m   10.244.5.18   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-sn4m5   1/1     Running   0             19m   10.244.5.20   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-thhf7   1/1     Running   0             19m   10.244.1.69   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-tts46   1/1     Running   1 (12m ago)   19m   10.244.2.71   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-vx5lz   1/1     Running   1 (12m ago)   19m   10.244.2.72   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-wd9n5   1/1     Running   0             19m   10.244.3.18   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-xnmnj   1/1     Running   1 (12m ago)   19m   10.244.2.75   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-xq6hf   1/1     Running   0             19m   10.244.3.17   k8s-worker245   <none>           <none>
+ubuntu@ubuntu:~/research$ kubectl get pods -o wide
+NAME                      READY   STATUS    RESTARTS      AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+sendler-7bd8775dc-2pvp2   1/1     Running   0             19m   10.244.1.68   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-52kz2   1/1     Running   0             19m   10.244.3.19   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-fjzsg   1/1     Running   1 (12m ago)   19m   10.244.2.74   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-hsb6h   1/1     Running   0             19m   10.244.5.19   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-kgf6n   1/1     Running   0             19m   10.244.4.73   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-lqb58   1/1     Running   0             19m   10.244.1.67   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-qqfch   1/1     Running   0             19m   10.244.4.74   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-r62pp   1/1     Running   0             19m   10.244.4.75   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-rnhnz   1/1     Running   0             19m   10.244.5.18   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-sn4m5   1/1     Running   0             19m   10.244.5.20   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-thhf7   1/1     Running   0             19m   10.244.1.69   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-tts46   1/1     Running   1 (12m ago)   19m   10.244.2.71   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-vx5lz   1/1     Running   1 (12m ago)   19m   10.244.2.72   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-wd9n5   1/1     Running   0             19m   10.244.3.18   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-xnmnj   1/1     Running   1 (12m ago)   19m   10.244.2.75   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-xq6hf   1/1     Running   0             19m   10.244.3.17   k8s-worker245   <none>           <none>
+ubuntu@ubuntu:~/research$ kubectl logs sendler-7bd8775dc-2pvp2
+Error from server: Get "https://192.168.31.100:10250/containerLogs/default/sendler-7bd8775dc-2pvp2/sendler": dial tcp 192.168.31.100:10250: connect: no route to host
+ubuntu@ubuntu:~/research$ kubectl logssendler-7bd8775dc-fjzsg
+error: unknown command "logssendler-7bd8775dc-fjzsg" for "kubectl"
+ubuntu@ubuntu:~/research$ kubectl logs sendler-7bd8775dc-fjzsg
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/main/aarch64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/community/aarch64/APKINDEX.tar.gz
+v3.14.3-100-g3bc474e225 [https://dl-cdn.alpinelinux.org/alpine/v3.14/main]
+v3.14.3-96-gaa864fdaa6 [https://dl-cdn.alpinelinux.org/alpine/v3.14/community]
+OK: 14832 distinct packages available
+(1/5) Installing ca-certificates (20211220-r0)
+(2/5) Installing brotli-libs (1.0.9-r5)
+(3/5) Installing nghttp2-libs (1.43.0-r0)
+(4/5) Installing libcurl (7.79.1-r0)
+(5/5) Installing curl (7.79.1-r0)
+Executing busybox-1.33.1-r6.trigger
+Executing ca-certificates-20211220-r0.trigger
+OK: 8 MiB in 19 packages
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>500 Internal Server Error</title>
+<h1>Internal Server Error</h1>
+<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>
+100   290  100   290    0     0  10805      0 --:--:-- --:--:-- --:--:-- 11153
+ubuntu@ubuntu:~/research$
+ubuntu@ubuntu:~/research$ kubectl get pods -o wide
+NAME                      READY   STATUS    RESTARTS      AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+sendler-7bd8775dc-2pvp2   1/1     Running   0             21m   10.244.1.68   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-52kz2   1/1     Running   0             21m   10.244.3.19   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-fjzsg   1/1     Running   1 (15m ago)   21m   10.244.2.74   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-hsb6h   1/1     Running   0             21m   10.244.5.19   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-kgf6n   1/1     Running   0             21m   10.244.4.73   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-lqb58   1/1     Running   0             21m   10.244.1.67   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-qqfch   1/1     Running   0             21m   10.244.4.74   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-r62pp   1/1     Running   0             21m   10.244.4.75   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-rnhnz   1/1     Running   0             21m   10.244.5.18   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-sn4m5   1/1     Running   0             21m   10.244.5.20   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-thhf7   1/1     Running   0             21m   10.244.1.69   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-tts46   1/1     Running   1 (15m ago)   21m   10.244.2.71   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-vx5lz   1/1     Running   1 (15m ago)   21m   10.244.2.72   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-wd9n5   1/1     Running   0             21m   10.244.3.18   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-xnmnj   1/1     Running   1 (15m ago)   21m   10.244.2.75   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-xq6hf   1/1     Running   0             21m   10.244.3.17   k8s-worker245   <none>           <none>
+ubuntu@ubuntu:~/research$ kubectl get nodes
+NAME            STATUS     ROLES                  AGE   VERSION
+k8s-worker100   NotReady   <none>                 54d   v1.23.0
+k8s-worker102   Ready      <none>                 54d   v1.23.0
+k8s-worker200   Ready      <none>                 54d   v1.23.0
+k8s-worker245   Ready      <none>                 54d   v1.23.0
+k8s-worker76    Ready      <none>                 54d   v1.23.0
+ubuntu          Ready      control-plane,master   54d   v1.23.3
+ubuntu@ubuntu:~/research$ kubectl get pods -o wide
+NAME                      READY   STATUS        RESTARTS      AGE     IP            NODE            NOMINATED NODE   READINESS GATES
+sendler-7bd8775dc-2pvp2   1/1     Terminating   0             26m     10.244.1.68   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-52kz2   1/1     Running       0             26m     10.244.3.19   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-fjzsg   1/1     Running       1 (20m ago)   26m     10.244.2.74   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-hsb6h   1/1     Running       0             26m     10.244.5.19   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-hwfn7   1/1     Running       0             3m11s   10.244.4.76   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-kgf6n   1/1     Running       0             26m     10.244.4.73   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-lqb58   1/1     Terminating   0             26m     10.244.1.67   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-qqfch   1/1     Running       0             26m     10.244.4.74   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-r62pp   1/1     Running       0             26m     10.244.4.75   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-r7t5q   1/1     Running       0             3m10s   10.244.5.21   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-rnhnz   1/1     Running       0             26m     10.244.5.18   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-sn4m5   1/1     Running       0             26m     10.244.5.20   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-thhf7   1/1     Terminating   0             26m     10.244.1.69   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-tts46   1/1     Running       1 (20m ago)   26m     10.244.2.71   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-vx5lz   1/1     Running       1 (20m ago)   26m     10.244.2.72   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-wcq8k   1/1     Running       0             3m10s   10.244.3.20   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-wd9n5   1/1     Running       0             26m     10.244.3.18   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-xnmnj   1/1     Running       1 (20m ago)   26m     10.244.2.75   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-xq6hf   1/1     Running       0             26m     10.244.3.17   k8s-worker245   <none>           <none>
+ubuntu@ubuntu:~/research$ kubectl get nodes
+NAME            STATUS     ROLES                  AGE   VERSION
+k8s-worker100   NotReady   <none>                 54d   v1.23.0
+k8s-worker102   Ready      <none>                 54d   v1.23.0
+k8s-worker200   Ready      <none>                 54d   v1.23.0
+k8s-worker245   Ready      <none>                 54d   v1.23.0
+k8s-worker76    Ready      <none>                 54d   v1.23.0
+ubuntu          Ready      control-plane,master   54d   v1.23.3
+ubuntu@ubuntu:~/research$ kubectl get pods -o wide
+NAME                      READY   STATUS        RESTARTS      AGE     IP            NODE            NOMINATED NODE   READINESS GATES
+sendler-7bd8775dc-2pvp2   1/1     Terminating   0             31m     10.244.1.68   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-52kz2   1/1     Running       0             31m     10.244.3.19   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-fjzsg   1/1     Running       1 (24m ago)   31m     10.244.2.74   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-hsb6h   1/1     Running       0             31m     10.244.5.19   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-hwfn7   1/1     Running       0             7m51s   10.244.4.76   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-kgf6n   1/1     Running       0             31m     10.244.4.73   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-lqb58   1/1     Terminating   0             31m     10.244.1.67   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-qqfch   1/1     Running       0             31m     10.244.4.74   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-r62pp   1/1     Running       0             31m     10.244.4.75   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-r7t5q   1/1     Running       0             7m50s   10.244.5.21   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-rnhnz   1/1     Running       0             31m     10.244.5.18   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-sn4m5   1/1     Running       0             31m     10.244.5.20   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-thhf7   1/1     Terminating   0             31m     10.244.1.69   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-tts46   1/1     Running       1 (24m ago)   31m     10.244.2.71   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-vx5lz   1/1     Running       1 (24m ago)   31m     10.244.2.72   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-wcq8k   1/1     Running       0             7m50s   10.244.3.20   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-wd9n5   1/1     Running       0             31m     10.244.3.18   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-xnmnj   1/1     Running       1 (24m ago)   31m     10.244.2.75   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-xq6hf   1/1     Running       0             31m     10.244.3.17   k8s-worker245   <none>           <none>
+ubuntu@ubuntu:~/research$ ping 192.168.31.100
+PING 192.168.31.100 (192.168.31.100) 56(84) bytes of data.
+From 192.168.31.136 icmp_seq=1 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=2 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=3 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=4 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=5 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=6 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=8 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=9 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=11 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=14 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=15 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=16 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=17 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=18 Destination Host Unreachable
+From 192.168.31.136 icmp_seq=19 Destination Host Unreachable
+^C
+--- 192.168.31.100 ping statistics ---
+20 packets transmitted, 0 received, +15 errors, 100% packet loss, time 19401ms
+pipe 4
