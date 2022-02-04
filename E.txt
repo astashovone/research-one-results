@@ -1,0 +1,136 @@
+ubuntu@ubuntu:~$ kubectl get pods
+NAME                      READY   STATUS    RESTARTS   AGE
+sendler-7bd8775dc-2bgjg   1/1     Running   0          22m
+sendler-7bd8775dc-4474b   1/1     Running   0          22m
+sendler-7bd8775dc-62xj2   1/1     Running   0          22m
+sendler-7bd8775dc-cc56f   1/1     Running   0          22m
+sendler-7bd8775dc-dddb4   1/1     Running   0          22m
+sendler-7bd8775dc-gg499   1/1     Running   0          22m
+sendler-7bd8775dc-gtrrj   1/1     Running   0          22m
+sendler-7bd8775dc-gzdgd   1/1     Running   0          22m
+sendler-7bd8775dc-hc5p9   1/1     Running   0          22m
+sendler-7bd8775dc-ht5x2   1/1     Running   0          22m
+sendler-7bd8775dc-jr9ld   1/1     Running   0          22m
+sendler-7bd8775dc-jrwx5   1/1     Running   0          22m
+sendler-7bd8775dc-l8tsr   1/1     Running   0          22m
+sendler-7bd8775dc-tsbvg   1/1     Running   0          22m
+sendler-7bd8775dc-wqnqx   1/1     Running   0          22m
+sendler-7bd8775dc-xcfkr   1/1     Running   0          22m
+
+ubuntu@ubuntu:~$ kubectl get pods -o wide
+NAME                      READY   STATUS    RESTARTS   AGE   IP            NODE            NOMINATED NODE   READINESS GATES
+sendler-7bd8775dc-2bgjg   1/1     Running   0          22m   10.244.5.25   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-4474b   1/1     Running   0          22m   10.244.3.27   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-62xj2   1/1     Running   0          22m   10.244.1.74   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-cc56f   1/1     Running   0          22m   10.244.1.75   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-dddb4   1/1     Running   0          22m   10.244.2.89   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-gg499   1/1     Running   0          22m   10.244.5.27   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-gtrrj   1/1     Running   0          22m   10.244.2.88   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-gzdgd   1/1     Running   0          22m   10.244.2.87   k8s-worker76    <none>           <none>
+sendler-7bd8775dc-hc5p9   1/1     Running   0          22m   10.244.3.25   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-ht5x2   1/1     Running   0          22m   10.244.4.90   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-jr9ld   1/1     Running   0          22m   10.244.4.88   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-jrwx5   1/1     Running   0          22m   10.244.3.26   k8s-worker245   <none>           <none>
+sendler-7bd8775dc-l8tsr   1/1     Running   0          22m   10.244.1.77   k8s-worker100   <none>           <none>
+sendler-7bd8775dc-tsbvg   1/1     Running   0          22m   10.244.4.89   k8s-worker200   <none>           <none>
+sendler-7bd8775dc-wqnqx   1/1     Running   0          22m   10.244.5.26   k8s-worker102   <none>           <none>
+sendler-7bd8775dc-xcfkr   1/1     Running   0          22m   10.244.1.76   k8s-worker100   <none>           <none>
+
+/ # ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+3: eth0@if8: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1450 qdisc noqueue state UP
+    link/ether b2:6f:c9:45:1c:b6 brd ff:ff:ff:ff:ff:ff
+    inet 10.244.5.25/24 brd 10.244.5.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::b06f:c9ff:fe45:1cb6/64 scope link
+       valid_lft forever preferred_lft forever
+
+/ # ping 10.244.3.27 (245)
+PING 10.244.3.27 (10.244.3.27): 56 data bytes
+64 bytes from 10.244.3.27: seq=1 ttl=62 time=6.415 ms
+64 bytes from 10.244.3.27: seq=2 ttl=62 time=3.540 ms
+64 bytes from 10.244.3.27: seq=3 ttl=62 time=5.105 ms
+64 bytes from 10.244.3.27: seq=4 ttl=62 time=2.701 ms
+64 bytes from 10.244.3.27: seq=5 ttl=62 time=2.984 ms
+64 bytes from 10.244.3.27: seq=6 ttl=62 time=3.879 ms
+64 bytes from 10.244.3.27: seq=7 ttl=62 time=4.611 ms
+64 bytes from 10.244.3.27: seq=8 ttl=62 time=2.849 ms
+64 bytes from 10.244.3.27: seq=9 ttl=62 time=3.409 ms
+64 bytes from 10.244.3.27: seq=10 ttl=62 time=3.019 ms
+^C
+--- 10.244.3.27 ping statistics ---
+11 packets transmitted, 10 packets received, 9% packet loss
+round-trip min/avg/max = 2.701/3.851/6.415 ms
+
+/ # ping 10.244.1.74 (100)
+PING 10.244.1.74 (10.244.1.74): 56 data bytes
+64 bytes from 10.244.1.74: seq=0 ttl=62 time=11.090 ms
+64 bytes from 10.244.1.74: seq=1 ttl=62 time=4.402 ms
+64 bytes from 10.244.1.74: seq=2 ttl=62 time=4.637 ms
+64 bytes from 10.244.1.74: seq=3 ttl=62 time=3.147 ms
+64 bytes from 10.244.1.74: seq=4 ttl=62 time=3.518 ms
+64 bytes from 10.244.1.74: seq=5 ttl=62 time=3.008 ms
+64 bytes from 10.244.1.74: seq=6 ttl=62 time=6.467 ms
+64 bytes from 10.244.1.74: seq=7 ttl=62 time=3.626 ms
+64 bytes from 10.244.1.74: seq=8 ttl=62 time=2.712 ms
+64 bytes from 10.244.1.74: seq=9 ttl=62 time=3.800 ms
+^C
+--- 10.244.1.74 ping statistics ---
+10 packets transmitted, 10 packets received, 0% packet loss
+round-trip min/avg/max = 2.712/4.640/11.090 ms
+
+/ # ping 10.244.2.89 (76)
+PING 10.244.2.89 (10.244.2.89): 56 data bytes
+64 bytes from 10.244.2.89: seq=0 ttl=62 time=57.498 ms
+64 bytes from 10.244.2.89: seq=1 ttl=62 time=5.745 ms
+64 bytes from 10.244.2.89: seq=2 ttl=62 time=3.069 ms
+64 bytes from 10.244.2.89: seq=3 ttl=62 time=3.278 ms
+64 bytes from 10.244.2.89: seq=4 ttl=62 time=4.328 ms
+64 bytes from 10.244.2.89: seq=5 ttl=62 time=2.720 ms
+64 bytes from 10.244.2.89: seq=6 ttl=62 time=3.682 ms
+64 bytes from 10.244.2.89: seq=7 ttl=62 time=5.451 ms
+64 bytes from 10.244.2.89: seq=8 ttl=62 time=2.995 ms
+64 bytes from 10.244.2.89: seq=9 ttl=62 time=3.455 ms
+^C
+--- 10.244.2.89 ping statistics ---
+10 packets transmitted, 10 packets received, 0% packet loss
+round-trip min/avg/max = 2.720/9.222/57.498 ms
+
+/ # ping 10.244.5.27 (102)
+PING 10.244.5.27 (10.244.5.27): 56 data bytes
+64 bytes from 10.244.5.27: seq=0 ttl=64 time=0.746 ms
+64 bytes from 10.244.5.27: seq=1 ttl=64 time=0.526 ms
+64 bytes from 10.244.5.27: seq=2 ttl=64 time=0.525 ms
+64 bytes from 10.244.5.27: seq=3 ttl=64 time=0.527 ms
+64 bytes from 10.244.5.27: seq=4 ttl=64 time=0.604 ms
+64 bytes from 10.244.5.27: seq=5 ttl=64 time=0.533 ms
+64 bytes from 10.244.5.27: seq=6 ttl=64 time=0.520 ms
+64 bytes from 10.244.5.27: seq=7 ttl=64 time=0.522 ms
+64 bytes from 10.244.5.27: seq=8 ttl=64 time=0.531 ms
+64 bytes from 10.244.5.27: seq=9 ttl=64 time=0.471 ms
+^C
+--- 10.244.5.27 ping statistics ---
+10 packets transmitted, 10 packets received, 0% packet loss
+round-trip min/avg/max = 0.471/0.550/0.746 ms
+
+/ # ping 10.244.4.90 (200)
+PING 10.244.4.90 (10.244.4.90): 56 data bytes
+64 bytes from 10.244.4.90: seq=0 ttl=62 time=3.669 ms
+64 bytes from 10.244.4.90: seq=1 ttl=62 time=4.773 ms
+64 bytes from 10.244.4.90: seq=2 ttl=62 time=4.259 ms
+64 bytes from 10.244.4.90: seq=3 ttl=62 time=3.353 ms
+64 bytes from 10.244.4.90: seq=4 ttl=62 time=4.872 ms
+64 bytes from 10.244.4.90: seq=5 ttl=62 time=2.922 ms
+64 bytes from 10.244.4.90: seq=6 ttl=62 time=2.805 ms
+64 bytes from 10.244.4.90: seq=7 ttl=62 time=3.048 ms
+64 bytes from 10.244.4.90: seq=8 ttl=62 time=3.417 ms
+64 bytes from 10.244.4.90: seq=9 ttl=62 time=3.448 ms
+^C
+--- 10.244.4.90 ping statistics ---
+10 packets transmitted, 10 packets received, 0% packet loss
+round-trip min/avg/max = 2.805/3.656/4.872 ms
